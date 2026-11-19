@@ -65,8 +65,8 @@ write_mode="WRITE_TRUNCATE"
 def upload_to_bigquery(df, key_json, project, dataset, table, write_mode):
 
     # 1. Connect to BigQuery
-    client = bigquery.Client.from_service_account_json(json_credentials_path=key_json, project=project)
-
+    client = bigquery.Client.from_service_account_info(json.loads(key_json),project=project)
+    
     # 2. Define table
     table_id = f"{project}.{dataset}.{table}"
 
