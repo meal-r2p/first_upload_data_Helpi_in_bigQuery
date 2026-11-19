@@ -25,5 +25,7 @@ jobs:
 
       - name: Run ETL
         env:
+          X_API_KEY_TO_HELPI: ${{ secrets.X_API_KEY_TO_HELPI }}
+          KOBO_API_TOKEN: ${{ secrets.KOBO_API_TOKEN }}
           GOOGLE_CREDENTIALS_JSON_KEY: ${{ secrets.GOOGLE_CREDENTIALS_JSON_KEY }}
         run: python main.py
