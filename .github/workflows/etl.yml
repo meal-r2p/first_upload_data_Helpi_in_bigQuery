@@ -2,9 +2,8 @@ name: ETL Pipeline
 
 on:
   schedule:
-    - cron: '0 6 * * *'
-
-  workflow_dispatch:
+    - cron: '0 * * * *'   # кожну годину
+  workflow_dispatch:       # можливість запускати вручну
 
 jobs:
   run-etl:
@@ -26,5 +25,5 @@ jobs:
 
       - name: Run ETL
         env:
-          GOOGLE_APPLICATION_CREDENTIALS_JSON: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}
+          GOOGLE_CREDENTIALS_JSON_KEY: ${{ secrets.GOOGLE_CREDENTIALS_JSON_KEY }}
         run: python main.py
