@@ -14,6 +14,5 @@ form_uid = 'aDnRtwPJGviJz555vK8G8L'
 api_token = os.getenv("KOBO_API_TOKEN")
 
 # Завантаження secret_json_file
-client = bigquery.Client.from_service_account_info(
-    json.loads(os.getenv("GOOGLE_CREDENTIALS_JSON_KEY"))
-)
+key_path = os.getenv("GOOGLE_CREDENTIALS_JSON_KEY")
+key_json = json.loads(key_path)
