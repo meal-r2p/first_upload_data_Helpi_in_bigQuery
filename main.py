@@ -1,0 +1,13 @@
+
+from settings.settings import form_uid, api_token
+from settings.settings import url, headers
+from sources.helpi import run_helpi
+# from sources.hand_kobo import download_ecxel_kobo
+from sources.kobo import run_kobo
+# from transformation.global_dataset import concat
+
+
+run_helpi(url, headers)
+print("***************************** \n*** Дані Хелпі завантажені *** \n*****************************")
+run_kobo(form_uid, api_token)
+print("***************************** \n*** Дані Kobo завантажені *** \n*****************************")
