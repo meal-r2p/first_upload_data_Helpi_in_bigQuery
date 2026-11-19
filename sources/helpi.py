@@ -42,17 +42,17 @@ def correct_data_type(dfA):
 
 
 
-key = r"D:\data_science\R2P_service_acount_API_key.json"
+# key = r"D:\data_science\R2P_service_acount_API_key.json"
 project = "forward-bucksaw-515009-h0"
 dataset = "all_datasets"
 table = "Helpi_data"
 write_mode="WRITE_TRUNCATE"
 
 
-def upload_to_bigquery(df, key, project, dataset, table, write_mode):
+def upload_to_bigquery(df, key_json, project, dataset, table, write_mode):
 
     # 1. Connect to BigQuery
-    client = bigquery.Client.from_service_account_json(json_credentials_path=key, project=project)
+    client = bigquery.Client.from_service_account_json(json_credentials_path=key_json, project=project)
 
     # 2. Define table
     table_id = f"{project}.{dataset}.{table}"
@@ -69,14 +69,18 @@ def upload_to_bigquery(df, key, project, dataset, table, write_mode):
     # 6. Get table information
     result = client.get_table(table_id)
 
+
     return result
 
 
-def run_helpi(url, headers):
+
+
+
+def run_helpi(url, headers, key_json):
     
     df = connect_to_Helpy(url, headers)
     df = work_data(df)
     df = correct_data_type(df)
-    upload_to_bigquery(df, key, project, dataset, table, write_mode)
+    upload_to_bigquery(df, key_json, project, dataset, table, write_mode)
 
 
