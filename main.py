@@ -7,7 +7,7 @@ from sources.kobo import run_kobo
 # from transformation.global_dataset import concat
 
 
-# run_helpi(url, headers, key_json)
-# print("***************************** \n*** Дані Хелпі завантажені *** \n*****************************")
+run_helpi(url, headers, key_json)
+print("***************************** \n*** Дані Хелпі завантажені *** \n*****************************")
 run_kobo(form_uid, api_token, key_json)
 print("***************************** \n*** Дані Kobo завантажені *** \n*****************************")
