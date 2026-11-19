@@ -10,20 +10,16 @@ def connect_to_Helpy(url, headers):
     
     response = requests.get(url, headers=headers)
 
-
-    print("Status code:", response.status_code)
-    print("Response size:", len(response.content))
-    print("Content type:", response.headers.get("Content-Type"))
-
-    print("Response preview:")
-    print(response.text[:500])
-
-    response.raise_for_status()
-
-    if not response.text.strip():
-        raise ValueError("Helpi API returned an empty response")
-
     
+    print("Status code:", response.status_code)
+    print("Response length:", len(response.text))
+    print("Response preview:", response.text[:500])
+    
+    response.raise_for_status()
+    
+    if not response.text.strip():
+        raise ValueError("API returned an empty response")
+        
     df = pd.read_csv(
         BytesIO(response.content),
         sep=";",
