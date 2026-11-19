@@ -170,16 +170,16 @@ def correct_data_type(dfB):
     return dfB
 
 
-key = r"D:\data_science\R2P_service_acount_API_key.json"
+# key = r"D:\data_science\R2P_service_acount_API_key.json"
 project = "forward-bucksaw-515009-h0"
 dataset = "all_datasets"
 table = "Kobo_data"
 write_mode="WRITE_TRUNCATE"
 
-def upload_to_bigquery(df, key, project, dataset, table, write_mode):
+def upload_to_bigquery(df, key_json, project, dataset, table, write_mode):
 
     # 1. Connect to BigQuery
-    client = bigquery.Client.from_service_account_json(json_credentials_path=key, project=project)
+    client = bigquery.Client.from_service_account_json(json_credentials_path=key_json, project=project)
 
     # 2. Define table
     table_id = f"{project}.{dataset}.{table}"
@@ -196,10 +196,12 @@ def upload_to_bigquery(df, key, project, dataset, table, write_mode):
     # 6. Get table information
     result = client.get_table(table_id)
 
+
     return result
 
 
-def run_kobo(form_uid, api_token):
+
+def run_kobo(form_uid, api_token, key_json):
 
     dfB1, dfB2 = download_from_koboform(form_uid, api_token)
     dfB = merge_kobo(dfB1, dfB2)
@@ -210,5 +212,5 @@ def run_kobo(form_uid, api_token):
     dfB = split_name_beneficiar(dfB)
     dfB = correct_data_type(dfB)
 
-    upload_to_bigquery(dfB, key, project, dataset, table, write_mode)
+    upload_to_bigquery(dfB, key_json, project, dataset, table, write_mode)
 
