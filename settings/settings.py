@@ -14,5 +14,4 @@ form_uid = 'aDnRtwPJGviJz555vK8G8L'
 api_token = os.getenv("KOBO_API_TOKEN")
 
 # Завантаження secret_json_file
-key_path = os.getenv("GOOGLE_CREDENTIALS_JSON_KEY")
-key_json = json.loads(key_path)
+key_json = os.getenv("GOOGLE_CREDENTIALS_JSON_KEY")
