@@ -1,7 +1,10 @@
 import os
 # Налаштування коннекту до API Helpi
 url = "https://helpi-prod.azurewebsites.net/api/feeddataset/105"
-headers = os.getenv("X_API_KEY_TO_HELPI")
+api_key_helpi = os.getenv("X_API_KEY_TO_HELPI")
+headers = {
+    "X-API-KEY": api_key_helpi
+}
 
 # Налаштування коннекту до КОБО
 form_uid = 'aDnRtwPJGviJz555vK8G8L'
