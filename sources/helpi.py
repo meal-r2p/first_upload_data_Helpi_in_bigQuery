@@ -2,7 +2,7 @@ import requests
 import pandas as pd
 from io import BytesIO
 from google.cloud import bigquery
-
+import json
 
 def connect_to_Helpy(url, headers):
 
